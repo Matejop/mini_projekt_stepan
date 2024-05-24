@@ -104,7 +104,7 @@ namespace mini_projekt_stepan
                     if (DateTime.TryParse(ratesForOneDate[0], new CultureInfo("cs-CZ"), DateTimeStyles.None, out DateTime singleExchangeDate) && inputDate > singleExchangeDate)
                     {
                         currencyExchangeDate = singleExchangeDate;
-                        USDRate = ratesForOneDate[29].Replace(',', '.');
+                        USDRate = ratesForOneDate[29];
                     }
                     else
                     {
@@ -158,7 +158,7 @@ namespace mini_projekt_stepan
                 {
                     if (!reader.IsDBNull(1))
                     {
-                        writetext.WriteLine("{0} {1} {2} {3} {4}", reader.GetString(0), reader.GetDecimal(1), reader.GetDouble(2), date, USDRate);
+                        writetext.WriteLine("{0} {1} {2} {3} {4}", reader.GetString(0), reader.GetDecimal(1), reader.GetDouble(2), date, USDRate.ToString("n", CultureInfo.GetCultureInfo("cz")));
                         //reader.GetDouble() is used instead of GetDecimal() because round() in the SQL query does not convert the type. So reader.GetDouble(2)  
                         //is still of type float so GetDecimal() can't be used because GetDecimal() does not allow for decimal numerals
                     }
